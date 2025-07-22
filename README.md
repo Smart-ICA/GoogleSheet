@@ -47,13 +47,19 @@ timestamp_field = "Horodateur"
 timestamp_format = "%d/%m/%Y %H:%M:%S"
 ```
 
-pub_topic: Topic on which messages will be published.
-plugin: Name of the compiled plugin.
-script_path: Path to your Python script that fetches Google Sheet data.
-agent_id: Optional ID added to the message for identification.
-poll_interval_minutes: Interval between polls.
-timestamp_field: Name of the field containing the timestamp (default: Horodateur).
-timestamp_format: Format of the timestamp (C++ style, default: French format).
+**pub_topic** : Topic on which messages will be published.
+
+**plugin** : Name of the compiled plugin.
+
+**script_path** : Path to your Python script that fetches Google Sheet data.
+
+**agent_id** : Optional ID added to the message for identification.
+
+**poll_interval_minutes** : Interval between polls.
+
+**timestamp_field** : Name of the field containing the timestamp (default: Horodateur).
+
+**timestamp_format** : Format of the timestamp (C++ style, default: French format).
 
 ## Google Sheets Setup
 
@@ -73,6 +79,8 @@ In Google Cloud Console:
 
 ## Python Script
 
+Once installed you must change the python script with your own Google Sheet settings :
+
 ```bash
 # Replace with your actual path to the json key
 gc = gspread.service_account(filename="path/to/credentials.json")
@@ -86,20 +94,22 @@ This script should output all spreadsheet rows in JSON format. Point to this scr
 
 ## Persistent Timestamp File
 
-The plugin stores the last seen timestamp in a file named last_timestamp.txt under a hidden directory next to your Python script. This ensures rows are not reprocessed after restarting the plugin.
+The plugin stores the last seen timestamp in a file named last_timestamp.txt under a hidden directory in the main directory. This ensures rows are not reprocessed after restarting the plugin.
 
 ## Notes
 
 Your sheet must include a timestamp field (e.g., Horodateur) that matches the expected format entered in the mads.ini file.
+
 MongoDB indexing (if used) should consider the message.timestamp_field to enforce uniqueness.
+
 Timestamps must be in chronological order to ensure correct filtering.
 
-# Authors
+## Authors
 
 Main author: 
 Léandre Reynard (Université Savoie Mont-Blanc)
 
 Contributors:
-Guillaume Cohen (Université de Toulouse)
+Guillaume Cohen (Université de Toulouse) &
 Anna-Carla Araujo (INSA Toulouse)
 
