@@ -67,7 +67,7 @@ If not done yet for your Google Sheets, follow the next steps :
 
 1. Create a Service Account
 
-In Google Cloud Console:
+In [Google Cloud Console](https://console.cloud.google.com):
 * Enable Google Sheets API and Google Drive API.
 * Create a service account and download the credentials.json file.
 
